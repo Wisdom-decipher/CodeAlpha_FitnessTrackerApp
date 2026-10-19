@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>🏃 Fitness Tracker</h1>
+    <button id="darkModeToggle" class="icon-btn" title="Toggle dark mode">🌙</button>
+  </header>
+
+  <main class="app-main">
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+      <h2>Today's Summary</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value" id="todaySteps">0</span>
+          <span class="stat-label">Steps</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="todayMinutes">0</span>
+          <span class="stat-label">Active min</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="todayCalories">0</span>
+          <span class="stat-label">Calories</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="streakCount">0</span>
+          <span class="stat-label">Day streak 🔥</span>
+        </div>
+      </div>
+
+      <div class="goal-row">
+        <label for="stepGoalInput">Daily step goal</label>
+        <input type="number" id="stepGoalInput" min="1000" step="500">
+      </div>
+      <div class="progress-bar-track">
+        <div id="stepProgressBar" class="progress-bar-fill"></div>
+      </div>
+      <p id="stepProgressLabel" class="progress-text">0 / 0 steps</p>
+
+      <h2>Last 7 Days — Calories</h2>
+      <canvas id="weeklyChart" height="180"></canvas>
+    </section>
+
+    <hr>
+
+    <!-- Log new activity -->
+    <section class="form-section">
+      <h2 id="formTitle">Log an activity</h2>
+      <form id="logForm">
+        <input type="hidden" id="editId">
+
+        <label for="dateInput">Date</label>
+        <input type="date" id="dateInput" required>
+
+        <label for="typeInput">Activity type</label>
+        <select id="typeInput">
+          <option>Walking</option>
+          <option>Running</option>
+          <option>Cycling</option>
+          <option>Gym / Strength</option>
+          <option>Yoga</option>
+          <option>Other</option>
+        </select>
+
+        <label for="stepsInput">Steps (optional)</label>
+        <input type="number" id="stepsInput" min="0" placeholder="e.g. 4500">
+
+        <label for="durationInput">Duration (minutes)</label>
+        <input type="number" id="durationInput" min="0" required placeholder="e.g. 30">
+
+        <label for="caloriesInput">Calories burned</label>
+        <input type="number" id="caloriesInput" min="0" required placeholder="e.g. 250">
+
+        <div class="form-buttons">
+          <button type="submit" id="saveBtn" class="primary-btn">Add Entry</button>
+          <button type="button" id="cancelEditBtn" class="secondary-btn" hidden>Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Activity log -->
+    <section class="list-section">
+      <h2>Activity Log</h2>
+      <p id="emptyLog" class="empty-state" hidden>No activities logged yet. Add your first one above!</p>
+      <ul id="logList"></ul>
+      <button id="clearAllBtn" class="danger-btn" hidden>Clear All Data</button>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    Built for the CodeAlpha App Development Internship
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
